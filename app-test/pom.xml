@@ -23,7 +23,7 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>top.beanshell</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>app-container</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
