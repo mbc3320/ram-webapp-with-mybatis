@@ -20,7 +20,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>top.beanshell</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>app-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScans;
 @ComponentScans(
         // ram component base pkg
         @ComponentScan("top.beanshell")
+        // todo add your custom pkg to scan
 )
 public class AppBootstrap {
 

@@ -43,14 +43,14 @@
 
         <!-- 通用类模块 -->
         <dependency>
-            <groupId>top.beanshell</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>app-common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
         <!-- 自定义配置 -->
         <dependency>
-            <groupId>top.beanshell</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>app-config</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
