@@ -71,6 +71,8 @@ New Project-->Maven-->Create from archetype--> Add Archetype
 
 接着 打开 app-container/src/main/profiles/dev/application-dev.properties,按图所示，修改数据库、Redis连接信息：
 
+注意： 原型工程默认开放 8089 HTTP端口，如有端口冲突，请也一并将application-dev.properties配置文件中的ram.application.http.port值修改为系统空闲的端口（建议端口取10000~60000中的一个）。
+
 ![idea create](./doc/img/07-idea-maven-archetype.png)
 
 然后就可以使用 app-test/src/main/java/top/beanshell/rbac/service/ 目录下的单元测试代码，执行一次单元测试。
