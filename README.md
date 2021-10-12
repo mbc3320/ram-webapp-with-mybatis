@@ -94,6 +94,6 @@ New Project-->Maven-->Create from archetype--> Add Archetype
 
 | 前端类型 | 项目地址 |
 |  ----  | ----  |
-| Ant-vue | [https://github.com/mbc3320/ram-webapp-console.git](https://github.com/mbc3320/ram-webapp-console.git) |
+| Ant-vue | [https://github.com/mbc3320/ram-webapp-console-antv.git](https://github.com/mbc3320/ram-webapp-console-antv.git) |
 | Element-UI | 待开发 |
 | Ant | 待开发 |
