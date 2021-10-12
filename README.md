@@ -20,9 +20,9 @@ cd my-demo-project
 
 ```bash
 
-mvn archetype:generate -DgroupId=com.yourcompany -DartifactId=your-artifact-id -Dversion=1.0.0-SNAPSHOT -Dpackage=com.yourcompany.demo -DarchetypeGroupId=top.beanshell -DarchetypeArtifactId=ram-webapp-with-mybatis-archetype -DarchetypeVersion=1.0.0-SNAPSHOT
+mvn archetype:generate -DgroupId=top.beanshell -DartifactId=your-artifact-id -Dversion=1.0.0-SNAPSHOT -Dpackage=top.beanshell -DarchetypeGroupId=top.beanshell -DarchetypeArtifactId=ram-webapp-with-mybatis-archetype -DarchetypeVersion=1.0.0-SNAPSHOT
 ```
 
-将以上代码中的DgroupId、DartifactId替换为你想要的值。
+将以上代码中的DartifactId替换为你想要的值，如需替换DgroupId的值，请在生成项目工程之后再修改（在此处修改会导致部分值替换异常）。
 
 ### Intellij Idea 创建
