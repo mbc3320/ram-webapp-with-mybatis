@@ -1,6 +1,19 @@
 #!/bin/bash
 
 echo "";
+echo "88                                                           88                       88  88";
+echo "88                                                           88                       88  88         ,d";
+echo "88                                                           88                       88  88         88";
+echo "88,dPPYba,    ,adPPYba,  ,adPPYYba,  8b,dPPYba,   ,adPPYba,  88,dPPYba,    ,adPPYba,  88  88       MM88MMM   ,adPPYba,   8b,dPPYba,";
+echo '88P     "8a  a8P_____88  ""      Y8  88P     "8a  I8[    ""  88P    "8a   a8P_____88  88  88         88     a8"     "8a  88P    "8a';
+echo '88       d8  8PP"""""""  ,adPPPPP88  88       88   `"Y8ba,   88       88  8PP"""""""  88  88         88     8b       d8  88       d8';
+echo '88b,   ,a8   "8b,   ,aa  88,    ,88  88       88  aa    ]8I  88       88  "8b,   ,aa  88  88  888    88,    "8a,   ,a8"  88b,   ,a8"';
+echo '8Y"Ybbd8"     "Ybbd8"     "8bbdP"Y8  88       88   "YbbdP"   88       88   "Ybbd8""   88  88  888    "Y888    "YbbdP"    88`YbbdP"';
+echo '                                                                                                                         88';
+echo '                                                                                                                         88';
+echo '                                                [Write less,time more.]';
+echo "";
+echo "                                            Copyright@2021 www.beanshell.top";
 echo "";
 
 OPERATE=$1
@@ -11,8 +24,10 @@ RUNNING="false"
 SHELL_PATH=$(cd $(dirname "$0") && pwd)
 BASE_PATH=$(dirname ${SHELL_PATH})
 LOG_PATH="${BASE_PATH}/logs"
+CONF_PATH="${BASE_PATH}/conf"
 PROGRAM_NAME="*.jar"
 PROGRAM_PATH="${BASE_PATH}/${PROGRAM_NAME}"
+CONF_FILE_PATH="${CONF_PATH}/application-*.properties"
 HEAP_DUMP_PATH="${BASE_PATH}/heapdump"
 START_TIME=$(date +%Y%m%d%H%M%S)
 
@@ -33,6 +48,13 @@ if [ ! -d "${HEAP_DUMP_PATH}" ]; then
   mkdir "${HEAP_DUMP_PATH}"
 fi
 
+SERVER_NAME=`sed '/^ram.application.name=/!d;s/.*=//' $CONF_FILE_PATH`
+SERVER_PORT=`sed '/^ram.application.http.port=/!d;s/.*=//' $CONF_FILE_PATH`
+
+echo "App name is ${SERVER_NAME}"
+echo "App http port is ${SERVER_PORT}"
+
+
 # 检查应用是否在运行
 function check() {
   echo "check running status..."
@@ -45,7 +67,7 @@ function check() {
     echo "App is running. pid=${tpid}"
     RUNNING="true"
   else
-    echo "App is NOT running."
+    echo "App is down."
     RUNNING="false"
   fi
 }
@@ -58,13 +80,13 @@ function start() {
     echo "App already running!"
   else
     echo -e "Start...\c"
-    nohup java ${JAVA_OPTS} ${MEM_OPTS} -jar ${PROGRAM_PATH} >${LOG_PATH}/console.log 2>&1 &
+    nohup java -Dloader.path=file://${CONF_PATH} ${JAVA_OPTS} ${MEM_OPTS} -jar ${PROGRAM_PATH} >${LOG_PATH}/console.log 2>&1 &
     count=0
     wait_time=0;
     while [ ${count} -lt 1 ]; do
       echo -e ".\c"
       sleep 1
-      count=$(ps -ef | grep "${APP_NAME}" | grep -v "grep" | wc -l)
+      count=$(netstat -an | grep "${SERVER_PORT}" | wc -l)
       echo -e "${count}\c"
       if [ ${count} -gt 0 ]; then
         break
@@ -182,6 +204,6 @@ else
   elif [ "${OPERATE}" == "help" ]; then
     displayHelp
   else
-    echo "Operate error. Just type 'help' to display what operator is supported."
+    echo "Unsupported operation. Just type 'help' to display what operation is supported."
   fi
 fi

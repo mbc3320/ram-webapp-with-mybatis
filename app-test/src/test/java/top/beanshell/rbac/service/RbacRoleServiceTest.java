@@ -134,8 +134,8 @@ public class RbacRoleServiceTest extends AppBootstrapTest {
      * @param permissionIds
      */
     private void grantPermission(List<Long> permissionIds) {
-        boolean authPermissionResultBefore = roleService.grantPermissionBefore(STATIC_ID, permissionIds, PermissionType.MENU);
-        boolean authPermissionResult = roleService.grantPermissionAfter(STATIC_ID, permissionIds, PermissionType.MENU);
+        boolean authPermissionResultBefore = roleService.grantPermission(STATIC_ID, permissionIds, PermissionType.MENU);
+        boolean authPermissionResult = roleService.refreshRoleUserPermission(STATIC_ID);
 
         Assert.assertTrue(authPermissionResultBefore);
         Assert.assertTrue(authPermissionResult);

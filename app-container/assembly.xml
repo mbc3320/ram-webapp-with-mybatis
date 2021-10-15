@@ -8,12 +8,13 @@
     <fileSets>
         <!-- 启动脚本 -->
         <fileSet>
-            <directory>${project.parent.basedir}/doc/bin</directory>
+            <directory>${project.parent.basedir}/doc/shell</directory>
             <outputDirectory>bin</outputDirectory>
             <directoryMode>0777</directoryMode>
             <includes>
                 <include>**/*</include>
             </includes>
+            <!-- 修改文件权限 -->
             <fileMode>0777</fileMode>
             <lineEnding>unix</lineEnding>
         </fileSet>
@@ -22,7 +23,7 @@
             <directory>${project.build.directory}/classes/</directory>
             <outputDirectory>conf</outputDirectory>
             <includes>
-                <include>*-sample.yml</include>
+                <include>*-sample.properties</include>
             </includes>
             <fileMode>0777</fileMode>
             <lineEnding>unix</lineEnding>

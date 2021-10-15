@@ -7,16 +7,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import top.beanshell.common.model.dto.BaseDTO;
+import top.beanshell.common.utils.IdUtil;
 import top.beanshell.rbac.common.model.enums.AccountState;
 import top.beanshell.rbac.common.model.enums.PermissionType;
 import top.beanshell.rbac.model.dto.RbacPermissionDTO;
 import top.beanshell.rbac.model.dto.RbacRoleDTO;
+import top.beanshell.rbac.model.dto.RbacRolePermissionCheckedDTO;
 import top.beanshell.rbac.model.dto.RbacUserDTO;
 import top.beanshell.rbac.service.RbacPermissionService;
 import top.beanshell.rbac.service.RbacRoleService;
 import top.beanshell.rbac.service.RbacUserService;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 单元测试启动器
@@ -38,6 +43,8 @@ public class AppBootstrapTest {
     protected static final String EMAIL = "junit_test@hotmail.com";
 
     protected static final String PHONE_NUMBER = "13800138000";
+
+    protected static final String SYSTEM_ADMIN_ROLE_CODE = "system_admin";
 
     /**
      * 根菜单节点ID
@@ -73,14 +80,54 @@ public class AppBootstrapTest {
                 .accountState(AccountState.NORMAL)
                 .build();
         if (userService.checkUserIfAvailable(userDTO)) {
+            Long adminUserId = IdUtil.getId();
+            userDTO.setId(adminUserId);
             boolean result = userService.saveEntity(userDTO);
+            // 默认分配一个系统管理员的角色、以及所有系统权限
+            RbacRoleDTO adminRole = roleService.getByCode(SYSTEM_ADMIN_ROLE_CODE);
+            if (null == adminRole) {
+                adminRole = RbacRoleDTO.builder()
+                        .roleCode(SYSTEM_ADMIN_ROLE_CODE)
+                        .roleName("系统管理员")
+                        .roleDefault(false)
+                        .roleDesc("拥有管理系统基础数据的权限")
+                        .build();
+                Long adminRoleId = IdUtil.getId();
+                adminRole.setId(adminRoleId);
+                boolean saveAdminRole = roleService.saveEntity(adminRole);
+
+                // 给系统管理员授权所有权限，以免无法使用系统功能
+                if (saveAdminRole) {
+                    List<RbacRolePermissionCheckedDTO> apiList = roleService.findRolePermission(adminRoleId, PermissionType.API);
+                    List<Long> apiIds = apiList.stream().map(BaseDTO::getId).collect(Collectors.toList());
+
+                    List<RbacRolePermissionCheckedDTO> menuList = roleService.findRolePermission(adminRoleId, PermissionType.MENU);
+                    List<Long> menuIds = menuList.stream().map(BaseDTO::getId).collect(Collectors.toList());
+
+                    List<RbacRolePermissionCheckedDTO> funList = roleService.findRolePermission(adminRoleId, PermissionType.FUNCTION);
+                    List<Long> funIds = funList.stream().map(BaseDTO::getId).collect(Collectors.toList());
+
+                    // 授权所有api、menu、function给角色
+                    boolean grantApiResult = roleService.grantPermission(adminRoleId, apiIds, PermissionType.API);
+                    boolean grantMenuResult = roleService.grantPermission(adminRoleId, menuIds, PermissionType.MENU);
+                    boolean grantFunResult = roleService.grantPermission(adminRoleId, funIds, PermissionType.FUNCTION);
+
+                    Assert.assertTrue(grantApiResult);
+                    Assert.assertTrue(grantMenuResult);
+                    Assert.assertTrue(grantFunResult);
+
+                }
+            }
+            // 授权角色给用户
+            boolean grantRoleResult = roleService.grantUser(adminRole.getId(), adminUserId);
+            Assert.assertTrue(grantRoleResult);
             Assert.assertTrue(result);
         }
     }
 
     /**
      * 获取用户DTO
-     *
+     * @return user info for unit test
      */
     protected RbacUserDTO getUserDTO() {
         RbacUserDTO userDTO = RbacUserDTO.builder()
@@ -98,7 +145,7 @@ public class AppBootstrapTest {
 
     /**
      * 获取RoleDTO
-     * @return
+     * @return  role info for unit test
      */
     protected RbacRoleDTO getRoleDTO() {
         RbacRoleDTO roleDTO = RbacRoleDTO.builder()
@@ -112,7 +159,7 @@ public class AppBootstrapTest {
 
     /**
      * 获取permissionDTO
-     * @return
+     * @return permission info for unit test
      */
     protected RbacPermissionDTO getPermissionDTO() {
         RbacPermissionDTO permissionDTO = RbacPermissionDTO.builder()
@@ -127,7 +174,7 @@ public class AppBootstrapTest {
 
     /**
      * 获取单元测试用户密码
-     * @return
+     * @return md5 password
      */
     protected String getPassword() {
         return SecureUtil.md5(PASSWORD);

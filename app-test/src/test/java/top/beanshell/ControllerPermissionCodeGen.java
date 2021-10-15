@@ -43,6 +43,7 @@ public class ControllerPermissionCodeGen extends AppBootstrapTest {
         log.info("All Permission: {}", permissionList);
         RbacPermissionQuery query = RbacPermissionQuery.builder().permissionType(PermissionType.API).build();
         List<RbacPermissionDTO> pList = rbacPermissionService.list(query);
+        List<RbacPermissionDTO> expireList = new ArrayList<>();
 
         Map<String, Long> codeMap = new HashMap<>();
 
@@ -52,10 +53,13 @@ public class ControllerPermissionCodeGen extends AppBootstrapTest {
                 codeMap.put(p.getPermissionCode(), p.getId());
                 if (permissionList.contains(p.getPermissionCode())) {
                     permissionList.remove(p.getPermissionCode());
+                } else {
+                    expireList.add(p);
                 }
             }
         }
         log.info("New Permission List: {}", permissionList);
+        log.info("Expire Permission List: {}", expireList.size());
 
     }
 
