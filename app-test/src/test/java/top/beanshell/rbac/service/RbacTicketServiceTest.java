@@ -63,6 +63,13 @@ public class RbacTicketServiceTest extends AppBootstrapTest {
         boolean refreshResult = ticketService.refresh(ticketInfoBO.getTicket());
         Assert.assertTrue(refreshResult);
 
+        try {
+            // todo waiting ticket refresh process finish.
+            Thread.sleep(1000);
+        } catch (Exception e) {
+
+        }
+
         // 销毁ticket
         boolean result = ticketService.destroy(ticketInfoBO.getTicket());
         Assert.assertTrue(result);
