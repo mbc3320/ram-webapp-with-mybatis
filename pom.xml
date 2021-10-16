@@ -187,7 +187,6 @@
         </plugins>
     </build>
 
-    <!-- 私仓发布配置 -->
     <!-- deploy config of nexus repository -->
     <distributionManagement>
         <snapshotRepository>
