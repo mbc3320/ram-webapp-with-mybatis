@@ -90,8 +90,8 @@ New Project-->Maven-->Create from archetype--> Add Archetype
 3. mybatis plus 的mapper扫描配置需添加top.beanshell.**.mapper
    
    ![modify-property](./doc/img/11-modify-properties.png)
-4. mybatis plus的pojo数据库实体映射类扫描配置需添加 com.company.*.model.pojo;com.company.*.*.model.pojo （以com.company作为你的groupId为例）
-5. mybatis plus的枚举包路径扫描配置需添加 com.company.*.model.enums;com.company.*.*.model.enums （以com.company作为你的groupId为例）
+4. mybatis plus的pojo数据库实体映射类扫描配置需添加 com.company.**.model.pojo（以com.company作为你的groupId为例）
+5. mybatis plus的枚举包路径扫描配置需添加 com.company.**.model.enums（以com.company作为你的groupId为例）
    
    ![modify-property](./doc/img/12-modify-properties.png)
 6. 修正app-test下的单元测试类，部分ram基础组件的包名被maven自动替换了，只需将 com.company 替换为 top.beanshell 即可修正错误。（以com.company作为你的groupId为例）
@@ -163,8 +163,8 @@ target 文件夹下，包含两个子文件夹 jar、tar。
 
 ### 部署
 
-请参考官网教程： [beanshell.top](https://beanshell.top)
+请参考官网教程： [https://beanshell.top](https://beanshell.top)
 
 ### 更新迭代
 
-请参考官网教程： [beanshell.top](https://beanshell.top)
+请参考官网教程： [https://beanshell.top](https://beanshell.top)
