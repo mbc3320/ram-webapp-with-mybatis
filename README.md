@@ -35,7 +35,7 @@ New Project-->Maven-->Create from archetype--> Add Archetype
 |  ----  | ----  |
 | GroupId | top.beanshell |
 | Artifact | ram-webapp-with-mybatis-archetype |
-| Version | 点击查询最新版本 |
+| Version | [点击查询最新版本](https://search.maven.org/search?q=g:top.beanshell%20AND%20a:ram-webapp-mybatis-archetype) |
 
 ![create-project](./doc/img/02-create-project.png)
 
