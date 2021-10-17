@@ -16,7 +16,7 @@
     <artifactId>ram-webapp-with-mybatis</artifactId>
     <name>ram-webapp-with-mybatis</name>
     <packaging>pom</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <modules>
         <module>app-api</module>
