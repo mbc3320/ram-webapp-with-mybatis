@@ -16,7 +16,7 @@
     <artifactId>ram-webapp-with-mybatis</artifactId>
     <name>ram-webapp-with-mybatis</name>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <modules>
         <module>app-api</module>
@@ -61,7 +61,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <ram-bom.version>1.0.2</ram-bom.version>
-        <ram-common.version>1.0.2</ram-common.version>
+        <ram-common.version>1.0.3</ram-common.version>
         <ram-config-web.version>1.0.2</ram-config-web.version>
         <ram-config-redis.version>1.0.2</ram-config-redis.version>
         <ram-config-mybatis.version>1.0.2</ram-config-mybatis.version>
