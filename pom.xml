@@ -16,7 +16,7 @@
     <artifactId>ram-webapp-with-mybatis</artifactId>
     <name>ram-webapp-with-mybatis</name>
     <packaging>pom</packaging>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 
     <modules>
         <module>app-api</module>
@@ -65,7 +65,7 @@
         <ram-config-web.version>1.0.2</ram-config-web.version>
         <ram-config-redis.version>1.0.2</ram-config-redis.version>
         <ram-config-mybatis.version>1.0.2</ram-config-mybatis.version>
-        <ram-rbac.version>1.0.1</ram-rbac.version>
+        <ram-rbac.version>1.0.2</ram-rbac.version>
     </properties>
     <dependencyManagement>
         <dependencies>
