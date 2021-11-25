@@ -14,7 +14,7 @@ ram 项目工程原型-mybatis版本
 
 ```bash
 
-mvn archetype:generate -DgroupId=com.company -DartifactId=your-artifact-id -Dversion=1.0.0-SNAPSHOT -Dpackage=top.beanshell -DarchetypeGroupId=top.beanshell -DarchetypeArtifactId=ram-webapp-with-mybatis-archetype -DarchetypeVersion=1.0.0
+mvn archetype:generate -DgroupId=com.company -DartifactId=your-artifact-id -Dversion=1.0.0-SNAPSHOT -Dpackage=top.beanshell -DarchetypeGroupId=top.beanshell -DarchetypeArtifactId=ram-webapp-with-mybatis-archetype -DarchetypeVersion=1.1.0
 ```
 
 将以上代码中的DgroupId、DartifactId的值替换为你想要的值(DgroupId如果使用top.beanshell，后续需要配置的工作将会少很多)。
