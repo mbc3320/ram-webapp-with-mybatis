@@ -1,20 +1,6 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : local-c3-dev
- Source Server Type    : MySQL
- Source Server Version : 50735
- Source Host           : 192.168.137.5:3306
- Source Schema         : ram-rbac
-
- Target Server Type    : MySQL
- Target Server Version : 50735
- File Encoding         : 65001
-
- Date: 18/10/2021 14:47:16
-*/
 
 SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for tb_rbac_config
@@ -62,7 +48,6 @@ CREATE TABLE `tb_rbac_role`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_rbac_role_role_code`(`role_code`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色信息' ROW_FORMAT = Dynamic;
-
 
 -- ----------------------------
 -- Table structure for tb_rbac_role_permission
@@ -145,3 +130,4 @@ CREATE TABLE `tb_rbac_user`  (
   UNIQUE INDEX `uk_rbac_user_phone_number`(`phone_number`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息' ROW_FORMAT = Dynamic;
 
+SET FOREIGN_KEY_CHECKS = 1;
