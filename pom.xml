@@ -29,7 +29,7 @@
     </modules>
 
     <description>
-        Ram archetype project with mybatis.
+        Archetype for Ram project with mybatis.
     </description>
 
     <url>https://www.beanshell.top</url>
