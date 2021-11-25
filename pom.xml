@@ -16,7 +16,7 @@
     <artifactId>ram-webapp-with-mybatis</artifactId>
     <name>ram-webapp-with-mybatis</name>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <modules>
         <module>app-api</module>
@@ -29,7 +29,7 @@
     </modules>
 
     <description>
-        Ram archetype project with mybatis.
+        Archetype for Ram project with mybatis.
     </description>
 
     <url>https://www.beanshell.top</url>
@@ -61,11 +61,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <ram-bom.version>1.0.2</ram-bom.version>
-        <ram-common.version>1.0.2</ram-common.version>
-        <ram-config-web.version>1.0.2</ram-config-web.version>
+        <ram-common.version>1.1.0</ram-common.version>
+        <ram-config-web.version>1.1.0</ram-config-web.version>
         <ram-config-redis.version>1.0.2</ram-config-redis.version>
         <ram-config-mybatis.version>1.0.2</ram-config-mybatis.version>
-        <ram-rbac.version>1.0.1</ram-rbac.version>
+        <ram-rbac.version>1.1.0</ram-rbac.version>
+        <ram-captcha.version>1.0.0</ram-captcha.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -131,6 +132,23 @@
                 <groupId>top.beanshell</groupId>
                 <artifactId>ram-rbac-simple-auth</artifactId>
                 <version>${ram-rbac.version}</version>
+            </dependency>
+
+            <!-- ram-captcha dependencies -->
+            <dependency>
+                <groupId>top.beanshell</groupId>
+                <artifactId>ram-captcha-common</artifactId>
+                <version>${ram-captcha.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.beanshell</groupId>
+                <artifactId>ram-captcha-api</artifactId>
+                <version>${ram-captcha.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.beanshell</groupId>
+                <artifactId>ram-captcha-service</artifactId>
+                <version>${ram-captcha.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
